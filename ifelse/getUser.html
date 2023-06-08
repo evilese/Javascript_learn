@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<button id="getUser">Kullanıcı Getir</button>
+<hr>
+<p id="username"></p>
+<img src="" alt="" id="image">
+
+<script>
+  document.getElementById("getUser").addEventListener("click", function () {
+      fetch('https://randomuser.me/api')
+          .then(response => response.json())
+          .then(json => {
+
+              console.log(json.results[0])
+
+              const name = json.results[0].name.first
+              const last = json.results[0].name.last
+              const image = json.results[0].picture.large
+
+              document.getElementById("username").innerHTML = name +" "+ last
+              document.getElementById("image").src = image
+          })
+      
+  });
+</script>
+</body>
+</html>
